@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  config.chef.log_level = :debug
+  config.vm.box = "CentOS_6.3"
+
+  config.vm.share_folder 'code', '/home/vagrant/code', '/Users/scalvert/code', { create: true }
+  config.vm.share_folder 'env', '/home/vagrant/env', '/Users/scalvert/env', { create: true }
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = ['tripit_cookbooks', 'cookbooks']
+    chef.add_recipe 'yum'
+    chef.add_recipe 'yum::epel'
+    chef.add_recipe 'python'
+    chef.add_recipe 'python::pip'
+    chef.add_recipe 'datamapper'
+  
+    # You may also specify custom JSON attributes:
+    chef.json = {}
+  end
+end

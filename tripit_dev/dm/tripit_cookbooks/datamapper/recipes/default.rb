@@ -12,11 +12,15 @@
   lapack
   fontconfig
   libpng
+  man
 ).each do |package|
   yum_package package
 end
 
 python_pip 'virtualenv'
+python_pip 'pexpect' do
+  virtualenv '/home/vagrant/env/dm' # untested!
+end
 
 python_virtualenv '/home/vagrant/env/dm' do
   options '--distribute --prompt=\(datamapper\)'
@@ -37,12 +41,12 @@ bash 'install stuff' do
     if [ ! -f /home/vagrant/dm_setup.done ]; then
       . /home/vagrant/env/dm/bin/activate
 
-#      /home/vagrant/env/dm/bin/pip install -r /home/vagrant/code/dm/requirements.txt
+      /home/vagrant/env/dm/bin/pip install -r /home/vagrant/code/dm/requirements.txt
 
-#      rpm -i http://3rdparty.dev.tripit.com/newRPMS/x86_64/antiword-it-0.37-itinerator.30727.rhel5.x86_64.rpm
-#    rpm -i http://3rdparty.dev.tripit.com/newRPMS/x86_64/ms-rtf-0.1.0-itinerator.30411.rhel5.x86_64.rpm
-#    rpm -i http://3rdparty.dev.tripit.com/newRPMS/x86_64/poppler-it-0.14.5-itinerator.31009.rhel5.x86_64.rpm
-#    rpm -i http://3rdparty.dev.tripit.com/newRPMS/x86_64/chroot_safe-1.4-itinerator.13103.rhel5.x86_64.rpm
+      rpm -i http://3rdparty.dev.tripit.com/newRPMS/x86_64/antiword-it-0.37-itinerator.30727.rhel5.x86_64.rpm
+    rpm -i http://3rdparty.dev.tripit.com/newRPMS/x86_64/ms-rtf-0.1.0-itinerator.30411.rhel5.x86_64.rpm
+    rpm -i http://3rdparty.dev.tripit.com/newRPMS/x86_64/poppler-it-0.14.5-itinerator.31009.rhel5.x86_64.rpm
+    rpm -i http://3rdparty.dev.tripit.com/newRPMS/x86_64/chroot_safe-1.4-itinerator.13103.rhel5.x86_64.rpm
   fi
 
   touch /home/vagrant/dm_setup.done

@@ -2,7 +2,6 @@
 # vi: set ft=ruby :
 
 Vagrant::Config.run do |config|
-  config.chef.log_level = :debug
   config.vm.box = "CentOS_6.3"
 
   config.vm.share_folder 'code', '/home/vagrant/code', '/Users/scalvert/code', { create: true }

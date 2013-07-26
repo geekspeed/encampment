@@ -3,6 +3,7 @@
 
 Vagrant::Config.run do |config|
   config.vm.box = "CentOS_6.3"
+  config.vm.customize ["modifyvm", :id, "--memory", "4000"]
 
   config.vm.share_folder 'code', '/home/vagrant/code', '/Users/scalvert/code', { create: true }
   config.vm.share_folder 'env', '/home/vagrant/env', '/Users/scalvert/env', { create: true }

@@ -1,3 +1,8 @@
+####################################################
+#
+# Required to run datamapper
+#
+
 # Shortcuts for convenience
 export DMHOME="/home/vagrant/code/dm"
 export MAPHOME="$DMHOME/src/etc/datamap"
@@ -17,4 +22,16 @@ export PYTHONPATH=$DMHOME/src/lib:$DMHOME/test/lib:$PYTHONPATH
 
 . /home/vagrant/env/dm/bin/activate
 
-export PATH=$PATH:~/code/dev_tools/dm/bin
+export PATH=$PATH:~/code/dev_tools/dm/bin:~/code/dm/src/bin
+
+###################################################
+#
+# Put "life in the shell" stuff specific to host OS in .bash_host
+#
+source ~/.bash_common
+
+###################################################
+#
+# Put "life in the shell" stuff specific to host OS in .bash_host
+#
+source ~/.bash_guest

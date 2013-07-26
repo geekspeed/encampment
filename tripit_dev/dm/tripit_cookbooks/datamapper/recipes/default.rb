@@ -13,6 +13,8 @@
   fontconfig
   libpng
   man
+  lighttpd
+  lighttpd-fastcgi
 ).each do |package|
   yum_package package
 end

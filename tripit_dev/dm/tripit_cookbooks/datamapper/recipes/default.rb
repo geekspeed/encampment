@@ -34,6 +34,13 @@ bash 'install stuff' do
   user 'root'
   code <<-END
     if [ ! -f /home/vagrant/dm_setup.done ]; then
+      pushd /tmp
+      wget http://www.selenic.com/smem/download/smem-1.3.tar.gz
+      gunzip smem-1.3.tar.gz
+      tar xvf smem-1.3.tar -C /usr/local/bin
+      ln -s /usr/local/bin/smem-1.3/smem /usr/local/bin/smem
+      popd
+      
       . /home/vagrant/env/dm/bin/activate
 
       /home/vagrant/env/dm/bin/pip install -r /home/vagrant/code/dm/requirements.txt

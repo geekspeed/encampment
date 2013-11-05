@@ -11,8 +11,10 @@ Vagrant.configure('2') do |config|
   config.vm.synced_folder '/Users/scalvert/code', '/home/vagrant/code'
   config.vm.synced_folder '/Users/scalvert/env', '/home/vagrant/env'
 
+  config.librarian_chef.cheffile_dir = 'librarian'
+
   config.vm.provision 'chef_solo' do |chef|
-    chef.cookbooks_path = ['tripit_cookbooks', 'cookbooks']
+    chef.cookbooks_path = ['tripit_cookbooks', 'librarian/cookbooks']
     chef.add_recipe 'yum'
     chef.add_recipe 'yum::epel'
     chef.add_recipe 'python'
